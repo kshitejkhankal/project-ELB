@@ -19,19 +19,18 @@ resource "aws_lb_target_group" "elb-target" {
   
 }
 resource "aws_lb_target_group_attachment" "tar-1" {
+  count = length(aws_instance.elb-instance-1)
     target_group_arn = aws_lb_target_group.elb-target.arn
-     target_id = "aws_instance.elb-instance-1[0].id"
+    
+
+     target_id = aws_instance.elb-instance-1[count.index].id
      
     port = 80
   
 }
-resource "aws_lb_target_group_attachment" "tag-2" {
-    target_group_arn = aws_lb_target_group.elb-target.arn
-    
-    target_id = "aws_instance.elb-instance-1[1].id"
-    port = 80
+
   
-}
+
 
   
 
