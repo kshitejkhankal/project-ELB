@@ -24,3 +24,8 @@ variable "instance" {
     default = [ "elb-instance-1","elb-instance-2" ]
   
 }
+variable "instance-id" {
+    type = list(string)
+    default = [ "aws_instance.elb-instance-1[0].id", "aws_instance.elb-instance-1[1].id"]
+  
+}
